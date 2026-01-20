@@ -1,0 +1,20 @@
+<div class="task-form">
+  <mat-card>
+    <mat-card-title>Add New Task</mat-card-title>
+    <mat-card-content>
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Task Name</mat-label>
+          <input matInput [(ngModel)]="taskName" />
+        </mat-form-field>
+      </div>
+
+      <div class="button-row">
+        <button mat-raised-button color="primary" (click)="addTask()" [disabled]="isLoading || !taskName.trim()">
+          <mat-progress-spinner *ngIf="isLoading" diameter="20" mode="indeterminate"></mat-progress-spinner>
+          <span *ngIf="!isLoading">Add Task</span>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

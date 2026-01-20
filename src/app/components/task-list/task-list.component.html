@@ -1,0 +1,15 @@
+<div class="task-list">
+  <mat-card>
+    <mat-card-title>Task List</mat-card-title>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let task of tasks; index as i">
+          {{ i + 1 }}. {{ task.name }}
+          <button mat-icon-button color="warn" (click)="deleteTask(task._id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>
