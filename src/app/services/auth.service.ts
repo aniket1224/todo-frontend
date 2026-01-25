@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,10 @@ export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.hasToken());
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   signup(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/signup`, { email, password }).pipe(
@@ -49,6 +53,7 @@ export class AuthService {
           localStorage.removeItem('authToken');
           localStorage.removeItem('userId');
           this.isAuthenticatedSubject.next(false);
+          this.router.navigate(['/login']);
         },
         (error) => {
           // Clear local storage even if logout request fails
@@ -56,12 +61,14 @@ export class AuthService {
           localStorage.removeItem('userId');
           this.isAuthenticatedSubject.next(false);
           console.error('Logout error:', error);
+          this.router.navigate(['/login']);
         }
       );
     } else {
       localStorage.removeItem('authToken');
       localStorage.removeItem('userId');
       this.isAuthenticatedSubject.next(false);
+      this.router.navigate(['/login']);
     }
   }
 
