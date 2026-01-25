@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -38,9 +38,31 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userId');
-    this.isAuthenticatedSubject.next(false);
+    const token = this.getToken();
+    if (token) {
+      this.http.post(`${this.apiUrl}/logout`, {}, {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${token}`
+        })
+      }).subscribe(
+        () => {
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('userId');
+          this.isAuthenticatedSubject.next(false);
+        },
+        (error) => {
+          // Clear local storage even if logout request fails
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('userId');
+          this.isAuthenticatedSubject.next(false);
+          console.error('Logout error:', error);
+        }
+      );
+    } else {
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userId');
+      this.isAuthenticatedSubject.next(false);
+    }
   }
 
   getToken(): string | null {
