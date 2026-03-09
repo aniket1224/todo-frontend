@@ -7,17 +7,16 @@ import { AuthService } from './services/auth.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule, 
-    RouterOutlet,
-    RouterModule, 
-    MatToolbarModule,
-    MatButtonModule
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    imports: [
+        CommonModule,
+        RouterOutlet,
+        RouterModule,
+        MatToolbarModule,
+        MatButtonModule
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
   title = 'frontend';

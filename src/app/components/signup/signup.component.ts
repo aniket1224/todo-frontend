@@ -9,18 +9,17 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-signup',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule
-  ],
-  templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css'
+    selector: 'app-signup',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatCardModule
+    ],
+    templateUrl: './signup.component.html',
+    styleUrl: './signup.component.css'
 })
 export class SignupComponent {
   signupForm!: FormGroup;

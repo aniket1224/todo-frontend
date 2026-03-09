@@ -11,19 +11,18 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @Component({
-  selector: 'app-task-form',
-  standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
-    MatProgressSpinnerModule
-  ],
-  templateUrl: './task-form.component.html',
-  styleUrls: ['./task-form.component.css']
+    selector: 'app-task-form',
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatCardModule,
+        MatProgressSpinnerModule
+    ],
+    templateUrl: './task-form.component.html',
+    styleUrls: ['./task-form.component.css']
 })
 export class TaskFormComponent {
   taskName = '';

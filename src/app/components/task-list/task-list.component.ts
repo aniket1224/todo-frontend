@@ -10,11 +10,10 @@ import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
-  selector: 'app-task-list',
-  standalone: true,
-  imports: [CommonModule,MatCardModule,MatListModule,MatIconModule,MatButtonModule],
-  templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.css']
+    selector: 'app-task-list',
+    imports: [CommonModule, MatCardModule, MatListModule, MatIconModule, MatButtonModule],
+    templateUrl: './task-list.component.html',
+    styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];
