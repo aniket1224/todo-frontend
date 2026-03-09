@@ -1,14 +1,60 @@
 <div class="task-list">
   <mat-card>
     <mat-card-title>Task List</mat-card-title>
+
     <mat-card-content>
       <mat-list>
+
         <mat-list-item *ngFor="let task of tasks; index as i">
-          {{ i + 1 }}. {{ task.name }}
-          <button mat-icon-button color="warn" (click)="deleteTask(task._id)">
-            <mat-icon>delete</mat-icon>
-          </button>
+
+          <!-- Checkbox -->
+          <mat-checkbox
+            [checked]="task.completed"
+            (change)="toggleComplete(task)">
+          </mat-checkbox>
+
+          <!-- Edit Mode -->
+          <ng-container *ngIf="editTaskId === task._id; else viewMode">
+
+            <input
+              [(ngModel)]="editedTaskName"
+              class="task-input"
+            />
+
+            <button mat-icon-button color="primary"
+              (click)="updateTask(task._id)">
+              <mat-icon>check</mat-icon>
+            </button>
+
+            <button mat-icon-button
+              (click)="cancelEdit()">
+              <mat-icon>close</mat-icon>
+            </button>
+
+          </ng-container>
+
+          <!-- Normal Mode -->
+          <ng-template #viewMode>
+
+            {{ i + 1 }}.
+            <span [class.completed]="task.completed">
+              {{ task.name }}
+            </span>
+
+            <button mat-icon-button
+              (click)="startEdit(task)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn"
+              (click)="deleteTask(task._id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+          </ng-template>
+
         </mat-list-item>
+
       </mat-list>
     </mat-card-content>
   </mat-card>

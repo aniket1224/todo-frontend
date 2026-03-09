@@ -2,24 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { AuthService } from './auth.service';
+import { environment } from '../../../environments/environment.dev';
 
 export interface Task {
   _id: string;
   name: string;
-  createdAt: string;
   userId: string;
+  createdAt: string;
+  updatedAt: string;
+  completed: boolean;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  private readonly apiUrl = 'https://todo-backend-xnyx.onrender.com/tasks';
+  private readonly apiUrl = `https://todo-backend-xnyx.onrender.com/tasks`;
   private readonly refresh$ = new Subject<void>();
 
   constructor(
     private readonly http: HttpClient,
-    private authService: AuthService
+    private readonly authService: AuthService
   ) {}
 
   get refreshNeeded$() {
@@ -39,14 +42,25 @@ export class TaskService {
     });
   }
 
-  addTask(name: string): Observable<Task> {
-    return this.http.post<Task>(this.apiUrl, { name }, {
+addTask(name: string): Observable<{ message: string; task: Task }> {
+  return this.http.post<{ message: string; task: Task }>(
+    this.apiUrl,
+    { name },
+    {
+      headers: this.getHeaders()
+    }
+  );
+}
+
+  deleteTask(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`, {
       headers: this.getHeaders()
     });
   }
 
-  deleteTask(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`, {
+  // UPDATE task
+  updateTask(id: string, task: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, task, {
       headers: this.getHeaders()
     });
   }
