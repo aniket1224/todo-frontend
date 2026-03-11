@@ -1,25 +1,50 @@
 <div class="task-list">
-  <mat-card>
-    <mat-card-title>Task List</mat-card-title>
+  <mat-card class="task-card">
+
+    <mat-card-title class="title">
+      Task List
+    </mat-card-title>
 
     <mat-card-content>
-      <mat-list>
 
-        <mat-list-item *ngFor="let task of tasks; index as i">
+      <div class="task-row" *ngFor="let task of tasks; index as i">
 
-          <!-- Checkbox -->
+
+
+        <!-- Middle section -->
+        <div class="middle">
+
+          <!-- Edit mode -->
+          <ng-container *ngIf="editTaskId === task._id; else viewMode">
+
+            <mat-form-field appearance="outline" class="edit-field">
+              <input matInput [(ngModel)]="editedTaskName">
+            </mat-form-field>
+
+          </ng-container>
+
+          <!-- View mode -->
+          <ng-template #viewMode>
+
+            <div class="task-text">
+
+              <span [class.completed]="task.completed">
+                {{task.name}}
+              </span>
+
+            </div>
+
+          </ng-template>
+
+        </div>
+
+        <!-- Left section -->
+        <div class="left">
           <mat-checkbox
             [checked]="task.completed"
             (change)="toggleComplete(task)">
           </mat-checkbox>
-
-          <!-- Edit Mode -->
-          <ng-container *ngIf="editTaskId === task._id; else viewMode">
-
-            <input
-              [(ngModel)]="editedTaskName"
-              class="task-input"
-            />
+          <ng-container *ngIf="editTaskId === task._id">
 
             <button mat-icon-button color="primary"
               (click)="updateTask(task._id)">
@@ -33,13 +58,7 @@
 
           </ng-container>
 
-          <!-- Normal Mode -->
-          <ng-template #viewMode>
-
-            {{ i + 1 }}.
-            <span [class.completed]="task.completed">
-              {{ task.name }}
-            </span>
+          <ng-container *ngIf="editTaskId !== task._id">
 
             <button mat-icon-button
               (click)="startEdit(task)">
@@ -51,11 +70,12 @@
               <mat-icon>delete</mat-icon>
             </button>
 
-          </ng-template>
+          </ng-container>
+        </div>
 
-        </mat-list-item>
+      </div>
 
-      </mat-list>
     </mat-card-content>
+
   </mat-card>
 </div>
