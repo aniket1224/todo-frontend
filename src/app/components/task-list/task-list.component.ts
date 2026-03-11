@@ -9,12 +9,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
-import { MatFormField } from '@angular/material/form-field';
 
 
 @Component({
   selector: 'app-task-list',
-  imports: [CommonModule, MatCardModule, MatListModule, MatIconModule, MatButtonModule, MatCheckboxModule, FormsModule, MatFormField],
+  imports: [CommonModule, MatCardModule, MatListModule, MatIconModule, MatButtonModule, MatCheckboxModule, FormsModule],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
