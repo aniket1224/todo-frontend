@@ -1,11 +1,9 @@
-<mat-toolbar color="primary">
-  <span>Task Manager</span>
+<mat-toolbar color="primary" *ngIf="isAuthenticated$ | async">
+  <span class="toolbar-title">Task Manager</span>
   <span class="spacer"></span>
-  <div *ngIf="isAuthenticated$ | async">
-    <a mat-button routerLink="/tasks">Task List</a>
-    <a mat-button routerLink="/add-task">Add Task</a>
-    <button mat-button (click)="logout()">Logout</button>
-  </div>
+  <a mat-button routerLink="/tasks">Task List</a>
+  <a mat-button routerLink="/add-task">Add Task</a>
+  <button mat-button (click)="logout()">Logout</button>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-task-list',
   imports: [CommonModule, MatCardModule, MatListModule, MatIconModule, MatButtonModule, MatCheckboxModule, FormsModule],
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.css']
+  styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];

@@ -20,7 +20,7 @@ import { AuthService } from '../../services/auth.service';
         RouterModule
     ],
     templateUrl: './login.component.html',
-    styleUrl: './login.component.css'
+    styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   loginForm!: FormGroup;
@@ -28,9 +28,9 @@ export class LoginComponent {
   error = '';
 
   constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router
+    private readonly formBuilder: FormBuilder,
+    private readonly authService: AuthService,
+    private readonly router: Router
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],

@@ -1,0 +1,46 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.form-container {
+  padding: $spacing-lg;
+}
+
+.form-card {
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: $shadow-md;
+
+  mat-card-header {
+    margin-bottom: $spacing-lg;
+  }
+
+  mat-card-title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+  }
+
+  mat-card-content {
+    padding-top: 0;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.full-width {
+  width: 100%;
+  display: block;
+  margin-bottom: $spacing-lg;
+}
+
+.button-container {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: flex-end;
+
+  button {
+    min-width: 120px;
+  }
+}

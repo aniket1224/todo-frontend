@@ -16,13 +16,13 @@ import { Observable } from 'rxjs';
         MatButtonModule
     ],
     templateUrl: './app.component.html',
-    styleUrl: './app.component.css'
+    styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
   title = 'frontend';
   isAuthenticated$!: Observable<boolean>;
 
-  constructor(private authService: AuthService) {}
+  constructor(private  readonly authService: AuthService) {}
 
   ngOnInit(): void {
     this.isAuthenticated$ = this.authService.isAuthenticated$;

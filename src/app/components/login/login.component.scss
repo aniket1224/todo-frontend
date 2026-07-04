@@ -1,0 +1,177 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+// Main container with full-screen background
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+
+  // Dark overlay for card visibility
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+  }
+
+  @include auth-responsive;
+}
+
+// Card styling
+.auth-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: $shadow-lg;
+  border-radius: $border-radius-lg;
+  background: white;
+  overflow: hidden;
+  @include fade-in;
+
+  // Card header
+  mat-card-header {
+    padding: $spacing-xl $spacing-lg 0 $spacing-lg;
+    margin-bottom: $spacing-xl;
+    background: linear-gradient(135deg, rgba($primary-color, 0.05), rgba($secondary-color, 0.05));
+  }
+
+  // Card title
+  mat-card-title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    text-align: center;
+    color: $primary-color;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+
+  // Card content
+  mat-card-content {
+    padding: 0 $spacing-lg $spacing-xl $spacing-lg;
+  }
+
+  // Form styling
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  // Form field
+  mat-form-field {
+    width: 100%;
+
+    ::ng-deep {
+      .mdc-text-field--filled {
+        background-color: rgba($primary-color, 0.02);
+      }
+
+      .mat-mdc-form-field-outline {
+        color: rgba($primary-color, 0.2);
+      }
+
+      &.mat-focused .mat-mdc-form-field-outline {
+        color: $primary-color;
+      }
+    }
+  }
+
+  // Form errors
+  mat-error {
+    font-size: $font-size-sm;
+    color: $error-color;
+  }
+
+  // Submit button
+  button {
+    margin-top: $spacing-md;
+    padding: $spacing-md $spacing-lg;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba($primary-color, 0.3);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Full width utility
+.full-width {
+  width: 100%;
+}
+
+// Error message styling
+.error-message {
+  color: $error-color;
+  font-size: $font-size-sm;
+  padding: $spacing-md;
+  background-color: rgba($error-color, 0.1);
+  border-radius: $border-radius-md;
+  border-left: 4px solid $error-color;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  @include slide-in;
+}
+
+// Signup link styling
+.link-text {
+  text-align: center;
+  margin-top: $spacing-xl;
+  font-size: $font-size-base;
+  color: #666;
+
+  a {
+    color: $primary-color;
+    font-weight: $font-weight-medium;
+    margin-left: $spacing-sm;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $primary-color;
+      transition: width 0.3s ease;
+    }
+
+    &:hover {
+      color: darken($primary-color, 10%);
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}

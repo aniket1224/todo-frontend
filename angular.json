@@ -26,12 +26,18 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "src/styles/index.scss"
             ],
             "scripts": []
           },
           "configurations": {
           "production": {
+            "fileReplacements": [
+              {
+                "replace": "environments/environment.dev.ts",
+                "with": "environments/environment.prod.ts"
+              }
+            ],
             "optimization": true,
             "extractLicenses": true,
             "namedChunks": false,
@@ -90,7 +96,7 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "src/styles/index.scss"
             ],
             "scripts": []
           }

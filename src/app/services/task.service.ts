@@ -17,7 +17,7 @@ export interface Task {
   providedIn: 'root'
 })
 export class TaskService {
-  private readonly apiUrl = `https://todo-backend-xnyx.onrender.com/tasks`;
+  private readonly apiUrl = `${environment.apiUrl}/tasks`;
   private readonly refresh$ = new Subject<void>();
 
   constructor(

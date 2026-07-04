@@ -1,0 +1,82 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.task-list-container {
+  padding: $spacing-lg;
+}
+
+.task-card {
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: $shadow-md;
+
+  mat-card-header {
+    margin-bottom: $spacing-lg;
+  }
+
+  mat-card-title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+  }
+
+  mat-list {
+    padding: $spacing-md 0;
+  }
+
+  mat-list-item {
+    height: auto;
+    align-items: center;
+    padding: $spacing-md 0;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: $neutral-light;
+    }
+
+    mat-checkbox[matListItemAvatar] {
+      align-self: center;
+      margin-right: $spacing-md;
+    }
+
+    [matListItemTitle] {
+      flex: 1;
+    }
+
+    [matListItemMeta] {
+      display: flex;
+      gap: $spacing-sm;
+      align-items: center;
+    }
+  }
+}
+
+.edit-input {
+  border: 1px solid $primary-color;
+  border-radius: $border-radius-md;
+  padding: $spacing-sm;
+  font-family: $font-family;
+  font-size: $font-size-base;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+}
+
+.task-number {
+  font-weight: $font-weight-medium;
+  color: $primary-color;
+  margin-right: $spacing-sm;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #999;
+  opacity: 0.7;
+}

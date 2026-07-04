@@ -1,0 +1,15 @@
+// custome scss functions for styling
+
+// Color adjustments
+@function darken-color($color, $percent) {
+  @return adjust-color($color, $lightness: -$percent);
+}
+
+@function lighten-color($color, $percent) {
+  @return adjust-color($color, $lightness: $percent);
+}
+
+// Responsive font sizing
+@function responsive-font($mobile, $desktop) {
+  @return calc($mobile + ($desktop - $mobile) * ((100vw - 320px) / (1440 - 320)));
+}

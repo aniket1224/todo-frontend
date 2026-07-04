@@ -3,13 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment.dev';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly apiUrl = `https://todo-backend-xnyx.onrender.com/auth`;
+  private readonly apiUrl = environment.apiUrl;
   private readonly isAuthenticatedSubject = new BehaviorSubject<boolean>(this.hasToken());
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
@@ -19,7 +19,7 @@ export class AuthService {
   ) {}
 
   signup(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signup`, { email, password }).pipe(
+    return this.http.post(`${this.apiUrl}/auth/signup`, { email, password }).pipe(
       tap((response: any) => {
         if (response.token) {
           localStorage.setItem('authToken', response.token);
@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
+    return this.http.post(`${this.apiUrl}/auth/login`, { email, password }).pipe(
       tap((response: any) => {
         if (response.token) {
           localStorage.setItem('authToken', response.token);
@@ -45,7 +45,7 @@ export class AuthService {
   logout(): void {
     const token = this.getToken();
     if (token) {
-      this.http.post(`${this.apiUrl}/logout`, {}, {
+      this.http.post(`${this.apiUrl}/auth/logout`, {}, {
         headers: new HttpHeaders({
           'Authorization': `Bearer ${token}`
         })
