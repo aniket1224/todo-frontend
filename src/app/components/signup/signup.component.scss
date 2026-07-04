@@ -151,27 +151,6 @@
     color: $secondary-color;
     font-weight: $font-weight-medium;
     margin-left: $spacing-sm;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: $secondary-color;
-      transition: width 0.3s ease;
-    }
-
-    &:hover {
-      color: darken($secondary-color, 10%);
-
-      &::after {
-        width: 100%;
-      }
-    }
+    text-decoration: underline;
   }
 }
